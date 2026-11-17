@@ -1,0 +1,19 @@
+We could either (1) have a random card generator with a % chance of drawing any 
+card or (2) create a deck and shuffle it.
+
+    (1) is probably easier and we could add an option to change the % chance
+        of certain cards (like wilds).
+    (2) would probably be a list of cards that are re-aranged every game and
+        re-shuffled when there are no cards. We could add options to 
+        add or remove cards, instead of changing probability.
+
+The card class structure would be:
+
+    color: string  -- "wild" would be treated as a wild
+    number: number  -- numbers above 10 could be the special cards
+    canBePlayed: boolean -- this could be here or in an 'if'
+                            statement of a function
+
+Player class structure would be:
+
+    canPlay: boolean
