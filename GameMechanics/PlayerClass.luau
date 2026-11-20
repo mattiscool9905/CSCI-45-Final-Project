@@ -1,4 +1,5 @@
 local PlayerClass = {}
+PlayerClass.__index = PlayerClass
 
 function PlayerClass.new(turnNumber)
     local self = setmetatable({}, PlayerClass)
