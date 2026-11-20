@@ -16,7 +16,7 @@ end
 -- Start of game
 -- Picks Starting Card
 local cardPlayed = CardModule.CreateCard()
-if cardPlayed.Number > 9 do
+while cardPlayed.Number > 9 do
     cardPlayed = CardModule.CreateCard()
 end
 
@@ -28,24 +28,26 @@ while gameOn == true do
     local currentPlayer = gamePlayers[turnPlayerNumber]
 
 -- Need to add a way to input Player selecting a card, GUI stuff
+-- Need some wait comand until a card becomes selected, so loop doesn't run continuously
 -- (Player needs to set currentCard.selected = true)
 
-    for i = 1, handCount do
-        local hand = currentPlayer.cardsInHand[i]
-        local currentCard = hand[i]
+    for i = 1, currentPlayer.handCount do
+        local hand currentPlayer.cardsInHand
+        local currentCard = currentPlayer.cardsInHand[i]
         if currentCard.selected == true then
             if currentCard.canBePlayed == true then
-            table.remove(currentPlayer.cardsInHand, currentCard)
+            table.remove(currentPlayer.cardsInHand, i)
+            currentPlayer.handCount = #currentPlayer.cardsInHand
             cardPlayed = currentCard
             nextTurn = true
         end
     end
 
     -- Checks if turn player needs to be moved to next player
-    if nextTurn == true do
+    if nextTurn == true then
         nextTurn = false
         if reverse == false then
-            if turnPlayerNumber == #gamePlayers do
+            if turnPlayerNumber == #gamePlayers then
                 turnPlayerNumber = 1
             else
                 turnPlayerNumber += 1
