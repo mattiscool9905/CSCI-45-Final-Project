@@ -32,7 +32,8 @@ function CardModule.CreateCard()
     local card = {
         Color = color,
         Number = number,
-        canBePlayed = false
+        canBePlayed = false,
+        selected = false
     }
 
     return card

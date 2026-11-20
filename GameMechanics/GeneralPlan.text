@@ -1,19 +1,15 @@
-We could either (1) have a random card generator with a % chance of drawing any 
-card or (2) create a deck and shuffle it.
-
-    (1) is probably easier and we could add an option to change the % chance
-        of certain cards (like wilds). The problem is games might have a lot
-        of the exact card.
-    (2) would probably be a list of cards that are re-aranged every game and
-        re-shuffled when there are no cards. We could add options to 
-        add or remove cards, instead of changing probability. This wouldn't
-        have the same problem since all cards are declared.
+(1) have a random card generator with a % chance of drawing any 
+card
+    (1) we could add an option to change the % chance of certain cards (like wilds).
+        The problem is games might have a lot of the exact card, since real decks
+        shift probability of other cards overtime (statistic stuff)
 
 The card class structure would be:
 
     color: string  -- "wild" would be treated as a wild
     number: number  -- numbers above 10 could be the special cards
     canBePlayed: boolean -- declared in an 'if' statement of a function
+    selected: boolean = false
 
 Player class structure would be:
 
@@ -28,7 +24,6 @@ Other variables:
 
     cardPlayed: Card = nil
     reverse: boolean = false
-    selected: boolean = false
 
 
 
