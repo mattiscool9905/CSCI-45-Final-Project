@@ -7,7 +7,8 @@ CardModule.Colors = {
     "Red",
     "Blue",
     "Green",
-    "Yellow"
+    "Yellow",
+    "Wild"  -- For 'if' color checking Wild would need an 'or' case
 }
 
 -- Create a card
