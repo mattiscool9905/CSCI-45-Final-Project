@@ -13,13 +13,7 @@ for i = 1, #connectedPlayers do
     table.insert(gamePlayers, player)
 end
 
--- Start of game
-
--- Picks Starting Card
-local cardPlayed = CardModule.CreateCard()
-while cardPlayed.Number > 9 do
-    cardPlayed = CardModule.CreateCard()
-end
+-- variables and functions for gameloop
 
 local gameOn = true
 local turnPlayerNumber = 1
@@ -45,9 +39,27 @@ local function NextPlayerTurn()
     end
 end
 
+-- Start of game
+
+-- Picks Starting Card
+local cardPlayed = CardModule.CreateCard()
+while cardPlayed.Number > 9 do
+    cardPlayed = CardModule.CreateCard()
+end
+
 while gameOn == true do
 
     local currentPlayer = gamePlayers[turnPlayerNumber]
+
+-- Checks for cards that canBePlayed
+    for i = 1, currentPlayer.handCount do
+        local currentCard = currentPlayer.cardsInHand[i]
+        if currentCard.Number == cardPlayed.Number or currentCard.Color == cardPlayed.Color or currentCard.Color == "Wild" then
+            currentCard.canBePlayed = true
+        else
+            currentCard.canBePlayed = false
+        end
+    end
 
 -- Need to add a way to input Player selecting a card, GUI stuff
 -- Need some wait comand until a card becomes selected, so loop doesn't run continuously
@@ -61,7 +73,7 @@ while gameOn == true do
             currentPlayer.handCount = #currentPlayer.cardsInHand
             cardPlayed = currentCard
             nextTurn = true
-            if cardPlayed.Number > 9 do
+            if cardPlayed.Number > 9 then
                 cardEffect = true
             end
             break
@@ -74,10 +86,12 @@ while gameOn == true do
     end
 
     -- Card effects
-    if cardEffect == true do
+    if cardEffect == true then
         cardEffect = false
         if cardPlayed.Number == 10 then     -- reverse
-            reverse = true
+            reverse = not reverse
+            NextPlayerTurn()
+            NextPlayerTurn()
         end
 
         if cardPlayed.Number == 11 then     -- skip
@@ -111,5 +125,7 @@ while gameOn == true do
             NextPlayerTurn()
         end
     end
+
+    wait(10)
 
 end
