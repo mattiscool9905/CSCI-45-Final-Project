@@ -7,7 +7,7 @@ local gamePlayers = {}
 for i = 1, #connectedPlayers do
     local player = PlayerClass.new(i)
     for j = 1, startingNumberOfCards do
-        local card = CardModule.CreateCard()
+        local card = CardModule:CreateCard()
         player:addCard(card)
     end
     table.insert(gamePlayers, player)
@@ -39,12 +39,12 @@ local function NextPlayerTurn()
     end
 end
 
--- Start of game
+    -- Start of game
 
 -- Picks Starting Card
-local cardPlayed = CardModule.CreateCard()
+local cardPlayed = CardModule:CreateCard()
 while cardPlayed.Number > 9 do
-    cardPlayed = CardModule.CreateCard()
+    cardPlayed = CardModule:CreateCard()
 end
 
 while gameOn == true do
@@ -61,9 +61,9 @@ while gameOn == true do
         end
     end
 
--- Need to add a way to input Player selecting a card, GUI stuff
--- Need some wait comand until a card becomes selected, so loop doesn't run continuously
--- (Player needs to set currentCard.selected = true)
+    -- Need to add a way to input Player selecting a card, GUI stuff
+    -- Need some wait comand until a card becomes selected, so loop doesn't run continuously
+    -- (Player needs to set currentCard.selected = true)
 
 -- Checks through all of cards to see if one is both selected and canBePlayed
     for i = 1, currentPlayer.handCount do
@@ -101,7 +101,7 @@ while gameOn == true do
         if cardPlayed.Number == 12 then     -- +2
             local nextPlayer = gamePlayers[turnPlayerNumber]
                 for i = 1, 2 do
-                    local card = CardModule.CreateCard()
+                    local card = CardModule:CreateCard()
                     nextPlayer:addCard(card)
                 end
             NextPlayerTurn()
@@ -116,7 +116,7 @@ while gameOn == true do
         if cardPlayed.Number == 14 then     -- Wild +4
             local nextPlayer = gamePlayers[turnPlayerNumber]
                 for i = 1, 4 do
-                    local card = CardModule.CreateCard()
+                    local card = CardModule:CreateCard()
                     nextPlayer:addCard(card)
                 end
 

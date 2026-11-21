@@ -7,8 +7,8 @@ CardModule.Colors = {
     "Red",
     "Blue",
     "Green",
-    "Yellow",
-}
+    "Yellow"
+} -- "Wild" is not here because it is declared with Numbers
 
 --[[Number meanings
 0-9: regualr numbers
@@ -20,7 +20,7 @@ CardModule.Colors = {
 ]]
 
 -- Create a card
-function CardModule.CreateCard()
+function CardModule:CreateCard()
     local colorIndex = math.random(1, #CardModule.Colors)
     local color = CardModule.Colors[colorIndex]
     local number = math.random(0, 14)
